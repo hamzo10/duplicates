@@ -1,50 +1,68 @@
-let theArray = [123, 22,33, 22, 11, 22, 11, 3, 1, 2, 22];
+let theArray = [123, 22, 123, 22, 11, 22, 11, 3, 1, 2, 22];
 
-/* function bubble(arr){
+/* schleife durchläuft das Array über jedes Element
+prüfen ob das Element an den verschiedenen Index vorhanden ist
+    ist das Element 
+wenn dies der Fall ist dann sollen die Element in ein neues Element gepusht werden 
+ist dies nicht der Fall wird die Überprüfung verlassen und auf das nächste Element gesetzt
+ */
 
-    for(let i = 0; i < arr.length; i++) {
 
-        for (let j = 0; j < arr.length - i -1 ; j++) {
-            
-            if (arr[j] > arr[j + 1]) {
-                var temp = arr[j];
-                arr[j];
-                arr[j + 1] = temp;
-            }
-            
+/* const duplicateArray = [];
+theArray.forEach((searchItem) => {
+    var count = 0;
+    theArray.forEach((duplicateCheckItem) => {
+        
+        if (searchItem === duplicateCheckItem) {
+            console.log(duplicateCheckItem);
+            count++;
         }
+            
+        if(count > 1){
+            duplicateArray.push(searchItem);
+            console.log('Ein guter Text: ', duplicateArray);
+        }
+
+    })
+}); */
+
+const duplicateArray = [];
+
+theArray.forEach((searchItem) => {
+    var count = 0;
+    theArray.forEach((duplicateCheckItem) => { 
+        if (searchItem === duplicateCheckItem) {
+            /* console.log(duplicateCheckItem); */
+            count++;
+        }
+    })
+    if(count > 1){
+        let isContaining = false;
+        duplicateArray.forEach((duplicateCheckItem) => {
+            
+            if(searchItem !== duplicateCheckItem) {
+                isContaining
+            }
+            duplicateArray.push(searchItem); // Falsche stelle
+        });    
     }
-} */
+    
+});
+console.log('Ein guter Text: ', duplicateArray);
 
-/* console.log(bubble(theArray)); */
 
-let dupArray = [];
+
+
+
+
+/* let dupArray = [123];
 const finalArray = [];
 let cnt = null; 
 
-
-/* function pushArray(a1) {
-   var all =  theArray.forEach(()=>{
-       dupArray.push(a1);
-    });
-   return all;
-} */
-/*pushArray();*/
-/* function pushArray(theArray){
-     theArray.forEach((items)=>{
-         dupArray.push(items);
-     });
-     return dupArray;
- }
-
- /*pushArray(theArray);*/
-
-// 22: 3
-// 11: 2
-
-
 theArray.forEach((a1)=>{
+    console.log('Zahlen von theArray: ' + a1)
     dupArray.forEach((a2)=>{
+        console.log('Zahlen von dupArray: ' + a2);
         if(a1 === a2) {
             finalArray.push(a2);
         }
@@ -53,8 +71,7 @@ theArray.forEach((a1)=>{
 });
 
 
-
  
-/*console.log(dupArray);*/
+console.log(dupArray);
 console.log(finalArray);
-
+ */
