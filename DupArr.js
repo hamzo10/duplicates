@@ -38,12 +38,13 @@ theArray.forEach((searchItem) => {
     })
     if(count > 1){
         let isContaining = false;
+        duplicateArray.push(searchItem);
         duplicateArray.forEach((duplicateCheckItem) => {
             
             if(searchItem !== duplicateCheckItem) {
-                isContaining
+               
             }
-            duplicateArray.push(searchItem); // Falsche stelle
+             // Falsche stelle
         });    
     }
     
