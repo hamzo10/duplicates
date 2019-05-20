@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{* Token valide, kein Delphi-Fehler *}
+{if !$errorCode && $technicianInformation->errorCode == 'SUCCESS'}
+    {* Techniker GPS vorhanden *}
+    {if $technicianInformation->technician->gpsCoordX != '' && $technicianInformation->technician->gpsCoordY != ''}
+
+        {* Techniker unterwegs *}{* Techniker angekommen *}
+        <div data-ng-if="(!techOp.arrived && !techOp.failed && !techOp.outdated) || (techOp.arrived && !techOp.failed)" data-ng-cloak>
+            <div class="profileContainer-map" data-csc-tech-op-map="techOpMap.options" data-csc-tech-op-map-on-init="techOpMap.onInit"></div>
+            {if $technicianInformation->technician->lastUpdate}
+                <div class="profileContainer-update" data-csc-tracking="csc:trackError" data-csc-tracking-data=" {type: 'technical', message: 'missing timestamp'} ">letzte Aktualisierung: {{ techOpInfo.technician.lastUpdate | date : 'dd.MM.yyyy HH:mm:ss' }}</div>
+            {/if}
+        </div>
+        {* Techniker-Position fehlerhaft *}
+        {* Techniker-Position fehlerhaft und Techniker-Informationen unbekannt *}
+        <div data-ng-if="techOp.failed && !techOp.isAPIError" data-ng-cloak>
+            <div class="alertBox alertBox--error mb-space--x6" data-csc-tracking="csc:addPageViewData"
+            data-csc-tracking-data=" {error: {type: 'technical', message: 'Service not available'}} ">
+                <div class="alertBox-title alertBox--error-title">Der Technikereinsatz kann nicht angezeigt werden.</div>
+                <div class="alertBox-desc" data-ng-if="techOp.errorText && techOp.errorText != ''" data-ng-cloak>
+                    {{techOp.errorText}}
+                </div>
+                <div class="alertBox-desc" data-ng-if="!techOp.errorText || techOp.errorText == ''" data-ng-cloak>
+                    Aktuell können wir die Daten zum Technikereinsatz nicht abrufen. Versuchen Sie es bitte später nochmal.
+                </div>
+            </div>
+        </div>
+ 
+        {* Techniker-Position fehlerhaft, aber Techniker-Informationen bekannt *}
+        <div data-ng-if="techOp.failed && techOp.isAPIError && !techOp.outdated" data-ng-cloak>
+            <div class="alertBox alertBox--tip mb-space--x6" data-csc-tracking="csc:addPageViewData"
+            data-csc-tracking-data=" {error: {type: 'notification', message: 'technician on its way'}} ">
+                <div class="alertBox-title alertBox--tip-title">Ihr Techniker ist auf dem Weg zu Ihnen</div>
+                <div class="alertBox-desc">
+                    Leider können wir im Moment nicht anzeigen, wo sich der Techniker befindet, um Ihren Auftrag zu bearbeiten. <br />
+                    Informationen zum Technikereinsatz gibt Ihnen gerne unsere Techniker-Hotline.
+                </div>
+            </div>
+            <div class="profileContainer mb-space--x4">
+                <div class="profileContainer-content">
+                    <div class="profileContainer-imageContainer">
+                        <img class="profileContainer-image" src="{$technicianInformation->technician->imageUri}" alt="" />
+                    </div>
+                    <div class="profileContainer-text">
+                        <h3 class="hl-gamma"><b>{{ techOp.getName() }}</b></h3>
+                        <div class="profileContainer-techTitle">Ihr Techniker</div>
+                        <div class="profileContainer-contract">
+                            <img class="profileContainer-contract--iconLeft" src="/static/img/icon-mytechie-auftragsnummer.png"><div class="mapProfileContainer-services--textLeft">{{ techOpInfo.orderNumber }}</div>
+                            <div data-csc-tracking="csc:addPageViewData" data-csc-tracking-data="{type: 'technical', message: 'technician action: error: missing phone'"}></div>
+                            {if $technicianInformation->hotline}
+                                <span data-csc-tracking="csc:trackError" data-csc-tracking-data=" {type: 'technical', message: 'missing phone'} ">
+                                <img class="profileContainer-contract--iconRight" src="/static/img/icon-mytechie-hotline.png"><div class="mapProfileContainer-services--textRight"><a class="invisibleLink" href="tel: {{ techOpInfo.hotline }}">{{ techOpInfo.hotline }}</a></div>
+                            </span>
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        {* Techniker-Position veraltet *}
+<div data-ng-if="techOp.outdated && !techOp.arrived" data-ng-cloak>
+    <div class="alertBox alertBox--tip mb-space--x6" data-csc-tracking="csc:addPageViewData"
+    data-csc-tracking-data=" {error: {type: 'notification', message: 'technician on its way'}} ">
+        <div class="alertBox-title alertBox--tip-title">Ihr Techniker ist auf dem Weg zu Ihnen</div>
+      <div class="alertBox-desc">
+            Aktuell empfangen wir kein GPS-Signal. 
+            {if $technicianInformation->technician->lastUpdate}
+            <span data-csc-tracking="csc:trackError" data-csc-tracking-data=" {type: 'technical', message: 'missing timestamp'} ">
+            Die letzte Aktualisierung  war um {{ techOpInfo.technician.lastUpdate | date : 'HH:mm' }} Uhr. <br />
+            {/if}
+            </span>
+            Sobald es wieder geht, zeigen wir Ihnen hier den Standort des Technikers.
+        </div>
+      
+    </div>
+    <div class="profileContainer mb-space--x4">
+        <div class="profileContainer-content">
+            <div class="profileContainer-imageContainer">
+                <img class="profileContainer-image" src="{$technicianInformation->technician->imageUri}" alt="" />
+            </div>
+            <div class="profileContainer-text">
+                <h3 class="hl-gamma"><b>{{ techOp.getName() }}</b></h3>
+                <div class="profileContainer-techTitle">Ihr Techniker</div>
+                <div class="profileContainer-contract">
+                    <img class="profileContainer-contract--iconLeft" src="/static/img/icon-mytechie-auftragsnummer.png"><div class="mapProfileContainer-services--textLeft">{{ techOpInfo.orderNumber }}</div>
+                    <div data-csc-tracking="csc:addPageViewData" data-csc-tracking-data="{type: 'technical', message: 'technician action: error: missing phone'"}></div>
+                    {if $technicianInformation->hotline}
+                    <span data-csc-tracking="csc:trackError" data-csc-tracking-data=" {type: 'technical', message: 'missing phone'} ">
+                        <img class="profileContainer-contract--iconRight" src="/static/img/icon-mytechie-hotline.png"><div class="mapProfileContainer-services--textRight"><a class="invisibleLink" href="tel: {{ techOpInfo.hotline }}">{{ techOpInfo.hotline }}</a></div>
+                    </span>
+                    {/if}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {else}
+        {* Techniker GPS nicht vorhanden *}
+        {* Techniker unterwegs, hat Freigabe nicht erteilt *}
+        <div class="alertBox alertBox--tip mb-space--x6" data-csc-tracking="csc:addPageViewData"
+        data-csc-tracking-data=" {error: {type: 'notification', message: 'technician on its way'}} ">
+            <div class="alertBox-title alertBox--tip-title">Ihr Techniker ist auf dem Weg zu Ihnen</div>
+            <div class="alertBox-desc">
+                Leider können wir im Moment nicht anzeigen, wo sich der Techniker befindet, um Ihren Auftrag zu bearbeiten. <br />
+                Informationen zum Technikereinsatz gibt Ihnen gerne unsere Techniker-Hotline.
+            </div>
+        </div>
+        <div class="profileContainer mb-space--x4">
+            <div class="profileContainer-content">
+                <div class="profileContainer-imageContainer">
+                    <img class="profileContainer-image" src="{$technicianInformation->technician->imageUri}" alt="" />
+                </div>
+                <div class="profileContainer-text" >
+                    <div class="profileContainer-text" >
+                    <h3 class="hl-gamma"><b>{{ techOp.getName() }}</b></h3>
+                    <div class="profileContainer-techTitle">Ihr Techniker</div>
+                    <div class="profileContainer-contract">
+                        <img class="profileContainer-contract--iconLeft" src="/static/img/icon-mytechie-auftragsnummer.png"><div class="mapProfileContainer-services--textLeft">{{ techOpInfo.orderNumber }}</div>
+                       <div data-csc-tracking="csc:addPageViewData" data-csc-tracking-data="{type: 'technical', message: 'technician action: error: missing phone'"}></div>
+                       {if $technicianInformation->hotline}
+                            <span data-csc-tracking="csc:trackError" data-csc-tracking-data=" {type: 'technical', message: 'missing phone'} ">
+                                <img class="profileContainer-contract--iconRight" src="/static/img/icon-mytechie-hotline.png"><div class="mapProfileContainer-services--textRight"><a class="invisibleLink" href="tel: {{ techOpInfo.hotline }}">{{ techOpInfo.hotline }}</a></div>
+                            </span>
+                       {/if}
+                    </div>
+                </div>
+            </div>
+        </div> 
+    {/if}
+
+    {* Delphi-Location Fehler *}
+    {elseif $technicianInformation->errorCode == 'CALL_HOTLINE'}
+        {if $technicianInformation->processingStatusSubContractor == 'aw'}
+            <div class="alertBox alertBox--tip mb-space--x6" data-csc-tracking="csc:addPageViewData"
+            data-csc-tracking-data=" {error: {type: 'notification', message: 'technician on its way'}} ">
+                <div class="alertBox-title alertBox--tip-title">Ihr Techniker ist auf dem Weg zu Ihnen</div>
+                <div class="alertBox-desc">
+                    Leider können wir im Moment nicht anzeigen, wo sich der Techniker befindet, um Ihren Auftrag zu bearbeiten. <br />
+                    Informationen zum Technikereinsatz gibt Ihnen gerne unsere Techniker-Hotline.
+                </div>
+            </div>
+            <div class="profileContainer mb-space--x4">
+                <div class="profileContainer-content">
+                    <div class="profileContainer-imageContainer">
+                        <img class="profileContainer-image" src="{$technicianInformation->technician->imageUri}" alt="" />
+                    </div>
+                    <div class="profileContainer-text">
+                        <h3 class="hl-gamma"><b>{{ techOp.getName() }}</b></h3>
+                        <div class="profileContainer-techTitle">Ihr Techniker</div>
+                        <div class="profileContainer-contract">
+                            <img class="profileContainer-contract--iconLeft" src="/static/img/icon-mytechie-auftragsnummer.png"><div class="mapProfileContainer-services--textLeft">{{ techOpInfo.orderNumber }}</div>
+                            <div data-csc-tracking="csc:addPageViewData" data-csc-tracking="csc:trackError" data-csc-tracking-data=" {type: 'technical', message: 'missing phone'}"></div>
+                            {if $technicianInformation->hotline}
+                                <span>
+                                    <img class="profileContainer-contract--iconRight" src="/static/img/icon-mytechie-hotline.png"><div class="mapProfileContainer-services--textRight"><a class="invisibleLink" href="tel: {{ techOpInfo.hotline }}">{{ techOpInfo.hotline }}</a></div>
+                                </span>
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {else}
+            <div class="alertBox alertBox--error mb-space--x6" data-csc-tracking="csc:addPageViewData"
+            data-csc-tracking-data=" {error: {type: 'notification', message: 'position of technician is unknown'}} ">
+                <div class="alertBox-title alertBox--error-title">Der Technikerstandort kann nicht angezeigt werden.</div>
+                <div class="alertBox-desc">
+                    Leider können wir Ihnen im Moment nicht darstellen, wo sich der Techniker befindet, um Ihren Auftrag <b>{$technicianInformation->orderNumber}</b> zu bearbeiten.
+                    {if $technicianInformation->hotline}
+                        Informationen zum Technikereinsatz gibt Ihnen gern unsere Techniker-Hotline unter {$technicianInformation->hotline}.
+                    {/if}
+                </div>
+            </div>
+            {if $technicianInformation->orderType == 'SK' || $technicianInformation->orderType == 'BI'}
+                <div class="profileContainer mb-space--x6">
+                    <div class="profileContainer-content">
+                        <b>Weitere Informationen:</b>
+                        <div class="btn btn--right mb-space--x4">
+                            {if $technicianInformation->orderType == 'SK'}
+                                <a href="/login?dli=0930TV" >Alles zu Ihrem Auftrag</a>
+                            {elseif $technicianInformation->orderType == 'BI'}
+                                <a href="/hilfe_und_service/erste_schritte" >Erste Schritte</a>
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+            {/if}
+        {/if}
+
+    {* Token invalide *}
+    {elseif $errorCode == 'TOKEN_INVALID'}
+        {* Fehler *}
+        <div class="alertBox alertBox--error mb--l" data-csc-tracking="csc:addPageViewData"
+        data-csc-tracking-data=" {error: {type: 'notification', message: 'Link is invalid'}} ">
+            <div class="alertBox-title alertBox--error-title">Der Technikereinsatz kann nicht angezeigt werden.</div>
+            <div class="alertBox-desc">
+                Der Link ist ungültig oder der Technikereinsatz ist bereits abgeschlossen.<br /><br />
+                Haben Sie Fragen dazu? Dann rufen Sie uns kostenlos unter <a class="invisibleLink" href="tel: 0800 52 666 25">0800 52 666 25</a> an.
+            </div>
+        </div>
+            
+    {elseif $errorCode == 'TECHNICAL_ERROR'}
+        {if $technicianInformation->orderNumber && $technicianInformation->technician->phone}
+            {* Techniker-Standort nicht bekannt *}
+            <div class="alertBox alertBox--tip mb--l" data-csc-tracking="csc:addPageViewData"
+            data-csc-tracking-data=" {error: {type: 'notification', message: 'position of technician is unknown'}} ">
+                <div class="alertBox-title alertBox--tip-title">Der Technikerstandort kann nicht angezeigt werden.</div>
+                <div class="alertBox-desc">
+                    Leider können wir Ihnen im Moment nicht darstellen, wo sich der Techniker befindet, um Ihren Auftrag <u>{$technicianInformation->orderNumber}</u> zu bearbeiten.
+                    {if $technicianInformation->hotline}
+                        Informationen zum Technikereinsatz gibt Ihnen gern unsere Techniker-Hotline unter {$technicianInformation->technician->phone}.
+                    {/if}
+                </div>
+            </div>
+            {if $technicianInformation->orderType == 'SK' || $technicianInformation->orderType == 'BI'}
+                <div class="profileContainer mb-space--x6">
+                    <div class="profileContainer-content">
+                        <b>Weitere Informationen:</b>
+                        <div class="btn btn--right mb-space--x4">
+                            {if $technicianInformation->orderType == 'SK'}
+                                <a href="/login?dli=0930TV" >Alles zu Ihrem Auftrag</a>
+                            {elseif $technicianInformation->orderType == 'BI'}
+                                <a href="index.php?id=6136" >Erste Schritte</a>
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+            {/if}
+        {else}
+            <div class="alertBox alertBox--error mb--l" data-csc-tracking="csc:addPageViewData"
+            data-csc-tracking-data=" {error: {type: 'technical', message: 'Service not available'}} ">
+                <div class="alertBox-title alertBox--error-title">Der Technikereinsatz kann nicht angezeigt werden.</div>
+                <div class="alertBox-desc">
+                    Aktuell können wir die Daten zum Technikereinsatz nicht abrufen. Versuchen Sie es bitte später nochmal.
+                </div>
+            </div>
+        
+        {/if}
+
+    {* Anderer Delphi-Fehler *}
+    {else}
+        <div class="alertBox alertBox--error mb--l" data-csc-tracking="csc:addPageViewData"
+        data-csc-tracking-data=" {error: {type: 'notification', message: 'Service not available'}} ">
+            <div class="alertBox-title alertBox--error-title">Der Technikereinsatz kann nicht angezeigt werden.</div>
+            <div class="alertBox-desc">
+                Aktuell können wir die Daten zum Technikereinsatz nicht abrufen. Versuchen Sie es bitte später nochmal.
+            </div>
+        </div>
+        
+    {/if}</title>
+</head>
+<body>
+
+</body>
+</html>
