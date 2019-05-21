@@ -5,33 +5,6 @@ ich wähle jedes einzelne Element aus
 ich suche das kleinste Element
 und stelle es an am anfang des Arrays */
 
-function bubbleSort(array) {
-    let swapped
-    let n = theArray.length;
-
-    do {
-        swapped = false;
-        for (let i = 0; i < n; i++) {
-            if (array[i] > array[i+1]) {
-                const temporary = array[i];
-                /* console.log('eins: ',temporary); */
-                array[i] = array[i+1];
-                /* console.log('zwei',array[i+1]); */
-                array[i+1] = temporary;
-                /* console.log('drei', array[i+1]); */
-                swapped = true;
-            }
-        }
-    }
-
-    while(swapped)
-
-    return array;
-    
-}
-
-let sorted = bubbleSort(theArray);
-console.log(sorted);
 
 /* schleife durchläuft das Array über jedes Element
 prüfen ob das Element an den verschiedenen Index vorhanden ist
@@ -64,14 +37,23 @@ theArray.forEach((searchItem) => {
 
         function sortIt(dupArray) {
             let swapped;
-            for (let i = 0; i < dupArray.length; i++) {
-                const element = array[i];
-                
+            do {
+                swapped = false;
+                for (let i = 0; i < dupArray.length; i++) {
+                    if(dupArray[i] > dupArray[i+1]) {
+                        const element = array[i];
+                        array[i] = array[i+1];
+                        array[i+1] = element;
+                        swapped = true;
+                    }
+                }
             }
             while(swapped)
+            return dupArray;
         }
     }
     
 });
-console.log('Ein guter Text: ', duplicateArray);
+/* console.log('Ein guter Text: ', duplicateArray); */
+console.log('Ein guter Text: ', sortIt(duplicateArray));
  
