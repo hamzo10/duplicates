@@ -30,7 +30,7 @@ const duplicateArray = [];
 
 theArray.forEach((searchItem) => {
     var count = 0;
-    theArray.forEach((duplicateCheckItem) => { 
+    theArray.forEach(function(duplicateCheckItem) { 
         if (searchItem === duplicateCheckItem) {
             /* console.log(duplicateCheckItem); */
             count++;
@@ -38,14 +38,14 @@ theArray.forEach((searchItem) => {
     })
     if(count > 1){
         let isContaining = false;
-        duplicateArray.push(searchItem);
-        duplicateArray.forEach((duplicateCheckItem) => {
-            
-            if(searchItem !== duplicateCheckItem) {
-               
+        duplicateArray.forEach(function(duplicateCheckItem) {
+            if (searchItem === duplicateCheckItem) {
+                isContaining = true;
             }
-             // Falsche stelle
-        });    
+        });  
+        if (!isContaining) {
+            duplicateArray.push(searchItem);
+        }  
     }
     
 });
