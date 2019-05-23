@@ -9,7 +9,7 @@ function reverse(str) {
     let reversed = '';
     for(let i = str.length-1; i >= 0; i--){
         reversed += str[i];
-        console.log(reversed);
+        /* console.log(reversed); */
     }
     if(reversed === str) {
         console.log(reversed + ' word is a palindrome');
@@ -20,7 +20,7 @@ function reverse(str) {
     return reversed;
 }
 
-reverse('word');
+reverse('racecar');
 
 /* 
     schleife durchläuft das Array über jedes Element
@@ -46,16 +46,15 @@ theArray.forEach((searchItem) => {
             if (searchItem === duplicateCheckItem) {
                 isContaining = true;
             }
-        });  
-        if (!isContaining) {
+        });                                                                         
             duplicateArray.push(searchItem);
         }  
 
     }
     /* console.log('Ein guter Text: ', sortIt(duplicateArray)); */
 });
-
-
+String. 
+   
 /* 
     ich gebe durch das array
     ich wähle jedes einzelne Element aus    
