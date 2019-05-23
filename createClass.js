@@ -3,31 +3,49 @@ function Hero (name, level) {
     this.level = level;
 }
 
-var hero1 = new Hero('Hamzah', 1);
+
 
 Hero.prototype.greet = function () {
     return `${this.name} says hello`
 }
 
-console.log(hero1);
-hero1.greet()
+// inc = function () {
+//     if(!this.counter){
+//         this.counter = 0
+//     }
+//     this.counter ++;
+//     console.log(this.counter)
+// }
 
-function Warrior (name, level, weapon) {
-    Hero.call(this, name, level);
-    this.weapon = weapon;
+Hero.prototype.inc = function () {
+    if(Hero.prototype.counter=== undefined){
+        Hero.prototype.counter = 0
+    }
+    Hero.prototype.counter ++;
+    return Hero.prototype.counter
+    
 }
+/* console.log(hero1);
+hero1.greet() */
 
-function Healer (name, level, weapon) {
-    Hero.call(this, name, level);
-    this.spell = spell;
-}
+// function Warrior (name, level, weapon) {
+//     Hero.call(this, name, level);
+//     this.weapon = weapon;
+// }
 
-Warrior.prototype.attack = function () {
-    return `${this.name} attacks with ${this.weapon}`;
-}
+// function Healer (name, level, spell) {
+//     Hero.call(this, name, level);
+//     this.spell = spell;
+// }
 
-Healer.prototype.heal = function () {
-    return `${this.name} casts ${this.spell}`;
-}
+// Warrior.prototype.attack = function () {
+//     return `${this.name} attacks with ${this.weapon}`;
+// }
 
-const 
+// Healer.prototype.heal = function () {
+//     return `${this.name} casts ${this.spell}`;
+// }
+
+// const hero1 = new Warrior('Bjorn', 1, 'axe');
+// const hero2 = new Healer ('Jack', 1, 'cure');
+
