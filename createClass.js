@@ -1,13 +1,24 @@
-function Hero (name, level) {
-    this.name = name;
-    this.level = level;
+function Name (nameArray) {
+    this.name = ['H', 'A', 'M', 'Z', 'A', 'H'];
 }
 
+/* function nameArray () {
+    const name = ['H', 'A', 'M', 'Z', 'A', 'H'];
+    return name;
+} */
 
+let arr1 = [1, 2, 3, 4, 5];
+let arr2 = [6, 7, 8, 9];
 
-Hero.prototype.greet = function () {
-    return `${this.name} says hello`
+function concat (arr1, arr2) {
+    let glued = arr1 + arr2;
+    return glued;
 }
+
+console.log(arr1, arr2);
+
+
+
 
 // inc = function () {
 //     if(!this.counter){
@@ -17,7 +28,10 @@ Hero.prototype.greet = function () {
 //     console.log(this.counter)
 // }
 
-Hero.prototype.inc = function () {
+
+
+
+/* Hero.prototype.inc = function () {
     if(Hero.prototype.counter=== undefined){
         Hero.prototype.counter = 0
     }
@@ -25,6 +39,9 @@ Hero.prototype.inc = function () {
     return Hero.prototype.counter
     
 }
+ */
+
+
 /* console.log(hero1);
 hero1.greet() */
 
