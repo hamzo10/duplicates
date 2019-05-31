@@ -1,35 +1,47 @@
-let nameArr = [];
 
-function Name(charac) {
-    this.name = charac;
+//TODO New Name soll String  Array
+// EIne KLasse erstellen die zwei functionen//Konstruktoren hat und beim eingeben von einem String die die Function/Konstruktoren String ausführt und beim anderen function Array Function
+
+function Name(charArr) {
+    this.charArr = charArr;
+    this.myToString = myToString;
+    this.deleteString = deleteString;
+    this.myToUpperCase = myToUpperCase;
+    this.myToLowerCase = myToLowerCase;
+    this.myGetLength = myGetLength;
 }
-var name = new Name(nameArr);
-
+// var name = new Name(nameArr);
+var name = new Name(['h', 'a', 'm', 'z', 'a', 'h'])
+console.log("toString: " + name.myToString());
+console.log("deleteString: " + name.deleteString(4,1));
+console.log("toUpperCase: " + name.myToUpperCase());
+console.log("toLowercase: " + name.myToLowerCase());
+console.log("getLength: " + name.myGetLength());
 /* 
 Convert String into an Array
 */
 
-let character = 'Hamzah';
 
-function names(name) {
-    for (let char = 0; char < name.length; char++) {
-        nameArr.push(name[char]);
-    }
-    /* console.log(nameArr); */
-    return nameArr;
-}
+// function names(name) {
+//     for (let char = 0; char < name.length; char++) {
+//         nameArr.push(name[char]);
+//     }
+//     /* console.log(nameArr); */
+//     return nameArr;
+// }
 
-console.log(names(character));
+// console.log(names(character));
+// names(character);
 
-console.log(name);
+// console.log(name);
 
 /* 
     ToString Method
 */
 
-function toString(letter) {
+function myToString() {
     let str = '';
-    nameArr.forEach((i) => {
+    this.charArr.forEach((i) => {
         str += i;
         // if(index != (nameArr + 1)) {
         //     str += ',';
@@ -37,7 +49,7 @@ function toString(letter) {
     });
     return str;
 }
-console.log(toString(nameArr));
+// console.log(toString(nameArr));
 
 
 /* 
@@ -45,32 +57,137 @@ console.log(toString(nameArr));
 */
 // 8
 function deleteString(stop, start = -1) {
+    console.log("param2: " + start);
     if (start == -1) {
         start = stop
         stop++
     }
     let returnedArray = [];
-    for (let i = 0; i < nameArr.length; i++) {
+    for (let i = 0; i < this.charArr.length; i++) {
         if (i == start) {
             i += stop - start - 1
             continue
         }
-        returnedArray.push(nameArr[i])
+        returnedArray.push(this.charArr[i])
     }
     return returnedArray
 }
-console.log(deleteString(4));
+// console.log(deleteString(4));
 
 /*
    Lenght of an Array
 */
 
-function getLength() {
-    for (let i = 0; i < nameArr.length - 1; i++) {
 
+function myGetLength() {
+    let count = 0;
+    /*for (let i = 0; i < this.charArr.length; i++) {
+        count++;
+    }*/
+    // let char;
+    /*i+1 wird um eins hochgezählt, wenn zum Beispiel die i auf 0 ist dann wird es immer wieder auf 0 gezählt und dann wieder hoch auf 1
+    i++ -> i = i+1;
+    ++i Es wird erst hochgezählt dann überprüft*/ 
+// While führt eine Leere Anweisung durch deshalb funktioniert es
+    while(this.charArr[count]){
+        count++
+    }
+    return count;
+}
+
+// console.log(name.getLength());
+
+// console.log('The length is: ' + getLength());
+
+
+/*
+has Method
+Idee:
+Iteriere duch das Array 
+Vergleiche ob das gegbene Wort gleich === dem gearde iterierende ist
+wenn ein Whitespace kommt dann gruppiere die Buchstaben zu einem Wort
+
+ich gehe jedes Element durch prüfe ob die Index von dem einem String zu dem andren glich ist solange 
+*/
+
+function hasMethod(){
+    let text = 'Hallo was geht ich bin Hamzah und mag es zu coden.'
+    let dupText = 'Hallox'
+    let count = 0;
+    let isLetter;
+    for(let i = 0; i < text.length; i++){
+        if(text[i] === dupText[j]){
+           isLetter += dupText[j];
+            for(let j = 0; j < dupText.length; j++) {
+                if(text[i] === dupText[j]){
+                    console.log(text[i]);
+                }
+            }
+        }
+
+        if(count === dupText.length){
+            console.log
+            console.log(true);
+        }
     }
 }
 
+// hasMethod();
+
+// console.log(textArr);
+// console.log(textDupArr);
+
+
+let charac = 'hallo';
+let substring = 'ha';
+// console.log(charac.indexOf(substring) !== -1);
+
+
+
+/* 
+indexOf Method
+*/
+
+
+/*
+include Method
+*/
+
+
+/*
+To uppercase
+*/
+
+
+function myToUpperCase() {
+    let newStr = '';
+    for(let i = 0; i < this.charArr.length; i++){
+        var thisCharCode = this.charArr[i].charCodeAt(0);
+        if((thisCharCode >= 97 && thisCharCode <=122 || (thisCharCode >= 224 && thisCharCode <=225))) {
+            newStr += String.fromCharCode(thisCharCode-32);
+        }else{
+            newStr += this.charArr[i];
+        }
+    }
+    return newStr;
+}
+
+
+function myToLowerCase() {
+    let newStr = '';
+    for(let i = 0; i < this.charArr.length; i++){
+        var thisCharCode = this.charArr[i].charCodeAt(0);
+        if(thisCharCode >= 65 && thisCharCode <=90) {
+            newStr += String.fromCharCode(thisCharCode+32);
+        }else{
+            newStr += this.charArr[i];
+        }
+    }
+    return newStr;
+}
+
+
+// console.log(toUpperCase('hallo'));
 
 // let arr1 = [1, 2, 3, 4, 5];
 // let arr2 = [6, 7, 8, 9, 'Hallo'];
