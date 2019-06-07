@@ -9,18 +9,21 @@ function Name(charArr) {
     this.myToUpperCase = myToUpperCase;
     this.myToLowerCase = myToLowerCase;
     this.myGetLength = myGetLength;
+    this.includes = includes;
+    this.concat = concat;
 }
 // var name = new Name(nameArr);
-var name = new Name(['h', 'a', 'm', 'z', 'a', 'h'])
+var name = new Name(['h', 'a', 'm', 'z', 'a', 'h']);
 console.log("toString: " + name.myToString());
 console.log("deleteString: " + name.deleteString(4,1));
 console.log("toUpperCase: " + name.myToUpperCase());
 console.log("toLowercase: " + name.myToLowerCase());
 console.log("getLength: " + name.myGetLength());
+console.log("Includes: " , name.includes('mzah'));
+console.log("Concat " + name.concat('qazi, '));
 /* 
 Convert String into an Array
 */
-
 
 // function names(name) {
 //     for (let char = 0; char < name.length; char++) {
@@ -110,27 +113,63 @@ wenn ein Whitespace kommt dann gruppiere die Buchstaben zu einem Wort
 ich gehe jedes Element durch prüfe ob die Index von dem einem String zu dem andren glich ist solange 
 */
 
-function hasMethod(){
-    let text = 'Hallo was geht ich bin Hamzah und mag es zu coden.'
-    let dupText = 'Hallox'
-    let count = 0;
-    let isLetter;
-    for(let i = 0; i < text.length; i++){
-        if(text[i] === dupText[j]){
-           isLetter += dupText[j];
-            for(let j = 0; j < dupText.length; j++) {
-                if(text[i] === dupText[j]){
-                    console.log(text[i]);
-                }
+
+function includes(substring){
+    let j = 0;
+    let equal = false;
+    let i;
+
+    for(i = 0; i<this.charArr.length; i++){
+        if(this.charArr[i] === substring[j]){
+            j++;
+            equal = true;
+            if(j === substring.length){
+                break;
             }
+        }else{
+            equal = false;
+            i = i - j;
+            j = 0;
         }
 
-        if(count === dupText.length){
-            console.log
-            console.log(true);
-        }
+    }
+    let index = 0;
+    if(equal && j === substring.length){
+        index = i - j +1;
+        return index;
+    }else{
+        return -1;
     }
 }
+
+
+function concat (str) {
+    let theStr = str + this.charArr;
+    return theStr;
+}
+
+
+// function hasMethod(){
+//     let text = 'Hallo was geht ich bin Hamzah und mag es zu coden.'
+//     let dupText = 'Hallox'
+//     let count = 0;
+//     let isLetter;
+//     for(let i = 0; i < text.length; i++){
+//         if(text[i] === dupText[j]){
+//            isLetter += dupText[j];
+//             for(let j = 0; j < dupText.length; j++) {
+//                 if(text[i] === dupText[j]){
+//                     console.log(text[i]);
+//                 }
+//             }
+//         }
+
+//         if(count === dupText.length){
+//             console.log
+//             console.log(true);
+//         }
+//     }
+// }
 
 // hasMethod();
 
@@ -142,6 +181,22 @@ let charac = 'hallo';
 let substring = 'ha';
 // console.log(charac.indexOf(substring) !== -1);
 
+
+
+/*
+Replace Method
+das CharArray wird iteriert
+und die Sachen die ich replacen möchte werden über Indexen wie bei der delete Methode erst gelöscht und 
+dann durch die neuen Indexen angegeben. 
+*/
+
+function myReplace (str) {
+    let repStr;
+    for (let i = 0; i < this.charArr.length; i++) {
+        
+    }
+    
+}
 
 
 /* 
