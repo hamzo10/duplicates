@@ -1,4 +1,3 @@
-
 //TODO New Name soll String  Array
 // EIne KLasse erstellen die zwei functionen//Konstruktoren hat und beim eingeben von einem String die die Function/Konstruktoren String ausführt und beim anderen function Array Function
 
@@ -13,7 +12,7 @@ function Name(charArr) {
     this.concat = concat;
 }
 // var name = new Name(nameArr);
-var name = new Name(['h', 'a', 'm', 'z', 'a', 'h']);
+let name = new Name(['h', 'a', 'm', 'z', 'a', 'h']);
 console.log("toString: " + name.myToString());
 console.log("deleteString: " + name.deleteString(4,1));
 console.log("toUpperCase: " + name.myToUpperCase());
@@ -21,6 +20,7 @@ console.log("toLowercase: " + name.myToLowerCase());
 console.log("getLength: " + name.myGetLength());
 console.log("Includes: " , name.includes('mzah'));
 console.log("Concat " + name.concat('qazi, '));
+
 /* 
 Convert String into an Array
 */
@@ -42,6 +42,7 @@ Convert String into an Array
     ToString Method
 */
 
+
 function myToString() {
     let str = '';
     this.charArr.forEach((i) => {
@@ -50,10 +51,9 @@ function myToString() {
         //     str += ',';
         // };
     });
-    return str;
+    // return str;
+    document.write(str);
 }
-// console.log(toString(nameArr));
-
 
 /* 
    Delete String
