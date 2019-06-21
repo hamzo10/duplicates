@@ -21,6 +21,17 @@ console.log("getLength: " + name.myGetLength());
 console.log("Includes: " , name.includes('mzah'));
 console.log("Concat " + name.concat('qazi, '));
 
+
+// onclick="wrapperFunction()"
+
+// document.getElementById.onclick
+
+// function wrapperFunction() {
+//     let name .....
+// }
+
+
+
 /* 
 Convert String into an Array
 */
@@ -80,7 +91,6 @@ function deleteString(stop, start = -1) {
 /*
    Lenght of an Array
 */
-
 
 function myGetLength() {
     let count = 0;
@@ -239,6 +249,10 @@ function myToLowerCase() {
         }
     }
     return newStr;
+}
+
+function init() {
+
 }
 
 
