@@ -1,6 +1,7 @@
 //TODO New Name soll String  Array
 // EIne KLasse erstellen die zwei functionen//Konstruktoren hat und beim eingeben von einem String die die Function/Konstruktoren String ausführt und beim anderen function Array Function
 
+
 function Name(charArr) {
     this.charArr = charArr;
     this.myToString = myToString;
@@ -12,24 +13,67 @@ function Name(charArr) {
     this.concat = concat;
 }
 // var name = new Name(nameArr);
-let name = new Name(['h', 'a', 'm', 'z', 'a', 'h']);
-console.log("toString: " + name.myToString());
-console.log("deleteString: " + name.deleteString(4,1));
-console.log("toUpperCase: " + name.myToUpperCase());
-console.log("toLowercase: " + name.myToLowerCase());
-console.log("getLength: " + name.myGetLength());
-console.log("Includes: " , name.includes('mzah'));
-console.log("Concat " + name.concat('qazi, '));
+// let name = new Name(['h', 'a', 'm', 'z', 'a', 'h']);
+// let anotherName = new Name(['m','r','n'])
+// console.log("toString: " + name.myToString());
+// console.log("deleteString: " + name.deleteString(4,1));
+// console.log("toUpperCase: " + name.myToUpperCase());
+// console.log("toLowercase: " + name.myToLowerCase());
+// console.log("getLength: " + name.myGetLength());
+// console.log("Includes: " , name.includes('mzah'));
+//                             anotherName.includes('mzah');
+// console.log("Concat " + name.concat('qazi, '));
+
+function executeAll(){
+    let getLength = name.myGetLength();
+    
+}
+
+function execute() {
+    var theInputName = document.getElementById('name').value;
+    let name = new Name(theInputName.split(""));
+  var firstDelim = document.getElementById('firstLetter').value;
+    var secondDelim = document.getElementById('secondLetter').value;
+    console.log('Second Index: ' + getIndex(secondDelim));
+    console.log('Index: ' + getIndex(firstDelim));
+    console.log(name.deleteString(getIndex(secondDelim), getIndex(firstDelim)));
+
+}
+function getIndex(delim) {
+  var theInputName = document.getElementById('name').value;
+  // document.write(theInputName);
+  for(var i = 0; i <= theInputName.length; i++){
+    if(theInputName[i] === delim) {
+       return i;
+    }
+  }  
+}
+
+
+
+
+// function nm (number){
+//   //
+// }
+
+// nm(getName("a"))
+// let m = getName()
+// m() 
+
 
 
 // onclick="wrapperFunction()"
+// function deleteCharacter(){// hamza => [h,a,m,z,a]
+//     let name = document.getElementById("name").value;
+//     let str = new Name(name.split(''));
+//     var firstLetter = document.getElementById("firstLetter").value;
+//     var secondLetter = document.getElementById("secondLetter").value;
+//     console.log(name, firstLetter, secondLetter);
+//     for(let i = 0; str.length; i++){
 
-// document.getElementById.onclick
-
-// function wrapperFunction() {
-//     let name .....
+//     }
+//     document.getElementById("theDeletedString").innerHTML =  str.deleteString(firstLetter, secondLetter);
 // }
-
 
 
 /* 
@@ -63,7 +107,6 @@ function myToString() {
         // };
     });
     // return str;
-    document.write(str);
 }
 
 /* 
@@ -71,7 +114,7 @@ function myToString() {
 */
 // 8
 function deleteString(stop, start = -1) {
-    console.log("param2: " + start);
+    // console.log("param2: " + start);
     if (start == -1) {
         start = stop
         stop++
@@ -108,9 +151,12 @@ function myGetLength() {
     return count;
 }
 
+
+
 // console.log(name.getLength());
 
 // console.log('The length is: ' + getLength());
+
 
 
 /*
@@ -208,22 +254,6 @@ function myReplace (str) {
     
 }
 
-
-/* 
-indexOf Method
-*/
-
-
-/*
-include Method
-*/
-
-
-/*
-To uppercase
-*/
-
-
 function myToUpperCase() {
     let newStr = '';
     for(let i = 0; i < this.charArr.length; i++){
@@ -251,8 +281,11 @@ function myToLowerCase() {
     return newStr;
 }
 
-function init() {
 
+
+function deleteLetter(){
+    var deleteLetter = document.getElementById("deleteLetter").value;
+    console.log(deleteLetter);
 }
 
 

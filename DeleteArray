@@ -3,3 +3,16 @@ for(let i = 0; i < arr.length; i++){
     if(toDelete.includes(i)) delete arr[i]
 }
 arr = arr.filter(e => !!e)
+
+prototype function 
+
+WO ist der Unterschied zwischen den Funktionen?
+Wie Werden Sie geschreiben?
+Wo werden sie gebraucht?
+
+
+Annonyme Function 
+Warpper Function 
+Callback Function
+Normale Function
+Class function  

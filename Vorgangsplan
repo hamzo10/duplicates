@@ -1,0 +1,23 @@
+QUuelle: https://developer.mozilla.org/de/docs/Learn/Getting_started_with_the_web/JavaScript_basis
+
+Was ist eine Variable?
+
+var nameDerVaraible = Datentypen "String", number, boolean
+Variablen sind da um Werte zu speichern die man wieder verwenden kann.
+
+Wo kann man JS benutzen auf in der Web Console und Wenn in seinem HTML dann bindet man es über 
+script TAG <script src=""> </script>
+
+Die Opereatoren 
+
+Erstes kleines Program
+
+Konsole Ausgabe: console.log(variable);
+
+HInweis-Meldung alert(Variable);
+
+Der nächste Schritt ist DOM wie kann ich sachen über das DOM verändern?
+
+Die Bedingungen 
+Die Shleifen 
+Was ist ein Array?
