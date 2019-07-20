@@ -1,6 +1,3 @@
-//TODO New Name soll String  Array
-// EIne KLasse erstellen die zwei functionen//Konstruktoren hat und beim eingeben von einem String die die Function/Konstruktoren String ausführt und beim anderen function Array Function
-
 
 function Name(charArr) {
     this.charArr = charArr;
@@ -12,9 +9,7 @@ function Name(charArr) {
     this.includes = includes;
     this.concat = concat;
 }
-// var name = new Name(nameArr);
-// let name = new Name(['h', 'a', 'm', 'z', 'a', 'h']);
-// let anotherName = new Name(['m','r','n'])
+
 // console.log("toString: " + name.myToString());
 // console.log("deleteString: " + name.deleteString(4,1));
 // console.log("toUpperCase: " + name.myToUpperCase());
@@ -49,70 +44,17 @@ function getIndex(delim) {
   }  
 }
 
-
-
-
-// function nm (number){
-//   //
-// }
-
-// nm(getName("a"))
-// let m = getName()
-// m() 
-
-
-
-// onclick="wrapperFunction()"
-// function deleteCharacter(){// hamza => [h,a,m,z,a]
-//     let name = document.getElementById("name").value;
-//     let str = new Name(name.split(''));
-//     var firstLetter = document.getElementById("firstLetter").value;
-//     var secondLetter = document.getElementById("secondLetter").value;
-//     console.log(name, firstLetter, secondLetter);
-//     for(let i = 0; str.length; i++){
-
-//     }
-//     document.getElementById("theDeletedString").innerHTML =  str.deleteString(firstLetter, secondLetter);
-// }
-
-
-/* 
-Convert String into an Array
-*/
-
-// function names(name) {
-//     for (let char = 0; char < name.length; char++) {
-//         nameArr.push(name[char]);
-//     }
-//     /* console.log(nameArr); */
-//     return nameArr;
-// }
-
-// console.log(names(character));
-// names(character);
-
-// console.log(name);
-
-/* 
-    ToString Method
-*/
-
-
 function myToString() {
     let str = '';
     this.charArr.forEach((i) => {
         str += i;
-        // if(index != (nameArr + 1)) {
-        //     str += ',';
-        // };
     });
-    // return str;
 }
 
 /* 
    Delete String
 */
-// 8
+
 function deleteString(stop, start = -1) {
     // console.log("param2: " + start);
     if (start == -1) {
@@ -129,7 +71,7 @@ function deleteString(stop, start = -1) {
     }
     return returnedArray
 }
-// console.log(deleteString(4));
+
 
 /*
    Lenght of an Array
@@ -137,38 +79,11 @@ function deleteString(stop, start = -1) {
 
 function myGetLength() {
     let count = 0;
-    /*for (let i = 0; i < this.charArr.length; i++) {
-        count++;
-    }*/
-    // let char;
-    /*i+1 wird um eins hochgezählt, wenn zum Beispiel die i auf 0 ist dann wird es immer wieder auf 0 gezählt und dann wieder hoch auf 1
-    i++ -> i = i+1;
-    ++i Es wird erst hochgezählt dann überprüft*/ 
-// While führt eine Leere Anweisung durch deshalb funktioniert es
     while(this.charArr[count]){
         count++
     }
     return count;
 }
-
-
-
-// console.log(name.getLength());
-
-// console.log('The length is: ' + getLength());
-
-
-
-/*
-has Method
-Idee:
-Iteriere duch das Array 
-Vergleiche ob das gegbene Wort gleich === dem gearde iterierende ist
-wenn ein Whitespace kommt dann gruppiere die Buchstaben zu einem Wort
-
-ich gehe jedes Element durch prüfe ob die Index von dem einem String zu dem andren glich ist solange 
-*/
-
 
 function includes(substring){
     let j = 0;
@@ -204,47 +119,8 @@ function concat (str) {
     return theStr;
 }
 
-
-// function hasMethod(){
-//     let text = 'Hallo was geht ich bin Hamzah und mag es zu coden.'
-//     let dupText = 'Hallox'
-//     let count = 0;
-//     let isLetter;
-//     for(let i = 0; i < text.length; i++){
-//         if(text[i] === dupText[j]){
-//            isLetter += dupText[j];
-//             for(let j = 0; j < dupText.length; j++) {
-//                 if(text[i] === dupText[j]){
-//                     console.log(text[i]);
-//                 }
-//             }
-//         }
-
-//         if(count === dupText.length){
-//             console.log
-//             console.log(true);
-//         }
-//     }
-// }
-
-// hasMethod();
-
-// console.log(textArr);
-// console.log(textDupArr);
-
-
 let charac = 'hallo';
 let substring = 'ha';
-// console.log(charac.indexOf(substring) !== -1);
-
-
-
-/*
-Replace Method
-das CharArray wird iteriert
-und die Sachen die ich replacen möchte werden über Indexen wie bei der delete Methode erst gelöscht und 
-dann durch die neuen Indexen angegeben. 
-*/
 
 function myReplace (str) {
     let repStr;
@@ -287,22 +163,3 @@ function deleteLetter(){
     var deleteLetter = document.getElementById("deleteLetter").value;
     console.log(deleteLetter);
 }
-
-
-// console.log(toUpperCase('hallo'));
-
-// let arr1 = [1, 2, 3, 4, 5];
-// let arr2 = [6, 7, 8, 9, 'Hallo'];
-//let arr3 = [];
-// for (let i = 0; i < arr1.length; i++) {
-//     arr3.push(arr1[i]);
-//     /* console.log(arr3); */
-// }
-// for (let j = 0; j < arr2.length; j++) {
-//     arr3.push(arr2[j])
-//     /* console.log(arr3); */
-// }
-
-
-// console.log(arr3);
-// console.log(arr3[9] + ' ich bin Hamzah ich bin ' + arr1[1] + arr1[2] + ' Jahre alt');
