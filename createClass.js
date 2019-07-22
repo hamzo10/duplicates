@@ -10,30 +10,67 @@ function Name(charArr) {
     this.concat = concat;
 }
 
-// console.log("toString: " + name.myToString());
-// console.log("deleteString: " + name.deleteString(4,1));
-// console.log("toUpperCase: " + name.myToUpperCase());
-// console.log("toLowercase: " + name.myToLowerCase());
-// console.log("getLength: " + name.myGetLength());
-// console.log("Includes: " , name.includes('mzah'));
-//                             anotherName.includes('mzah');
-// console.log("Concat " + name.concat('qazi, '));
 
-function executeAll(){
-    let getLength = name.myGetLength();
-    
+/* 
+    HERE ALL THE EXECUTE FUNCTIONS
+*/
+
+function executeGetLength() {
+    var theInput = document.getElementById('nameGetLength').value;
+    let name = new Name(theInput.split(""));
+    let getLength = document.getElementById('getLength').innerHTML = name.myGetLength();
+}
+
+function executeConcat() {
+    var theInput = document.getElementById('theConcat').value;
+    // var secondInput = document.getElementById('theSecondConcat').value;
+    let name = new Name(theInput.split(""));
+    let concatenated = document.getElementById('concatenate').innerHTML = name.concat(theInput);
+    console.log(concatenated());
+}
+
+function executeInclude() {
+    var theInput = document.getElementById('theName').value;
+    var secondInput = document.getElementById('letterInclude').value;
+    let name = new Name(theInput.split(""));
+    let include = document.getElementById('includes').innerHTML = name.includes(secondInput);
+}
+
+function executeToLowerCase() {
+    var theInput = document.getElementById('nameToLowerCase').value;
+    let name = new Name(theInput.split(""));
+    let ToLowerCase = document.getElementById('lowerCase').innerHTML = name.myToLowerCase();
+}
+
+function executeToString(){
+    var theInput = document.getElementById('nameToString').value;
+    let name = new Name(theInput.split("")); 
+    let toString = document.getElementById('toString').innerHTML = name.myToString();
+    console.log(toString);
+}
+
+
+function executeMyToUpperCase() {
+    var theInput = document.getElementById('nameToUpperCase').value;
+    let name = new Name(theInput.split(""));
+    let toUpperCase = document.getElementById('toUpperCase').innerHTML = 'The UpperCase Version: ' + name.myToUpperCase();
 }
 
 function execute() {
     var theInputName = document.getElementById('name').value;
     let name = new Name(theInputName.split(""));
-  var firstDelim = document.getElementById('firstLetter').value;
+    var firstDelim = document.getElementById('firstLetter').value;
     var secondDelim = document.getElementById('secondLetter').value;
-    console.log('Second Index: ' + getIndex(secondDelim));
-    console.log('Index: ' + getIndex(firstDelim));
-    console.log(name.deleteString(getIndex(secondDelim), getIndex(firstDelim)));
+    // console.log(name.deleteString(getIndex(secondDelim), getIndex(firstDelim)));
 
+    if(firstDelim > secondDelim) {
+        var wrongStructure = document.getElementById('theDeletedString').innerHTML = "Bitte die Buchstaben drehen";
+        console.error('Bitte drehe die Buchstaben');
+    }else{
+        var deleteIt = document.getElementById('theDeletedString').innerHTML = "Hier ist der neue Name: " + name.deleteString(getIndex(secondDelim), getIndex(firstDelim)); 
+    }
 }
+
 function getIndex(delim) {
   var theInputName = document.getElementById('name').value;
   // document.write(theInputName);
@@ -43,6 +80,10 @@ function getIndex(delim) {
     }
   }  
 }
+
+/* 
+    HERE ALL THE METHODS
+*/
 
 function myToString() {
     let str = '';
@@ -71,6 +112,7 @@ function deleteString(stop, start = -1) {
     }
     return returnedArray
 }
+
 
 
 /*
