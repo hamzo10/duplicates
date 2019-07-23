@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans Condensed', sans-serif;
+    box-sizing: border-box;
+    font-size: 1.5rem;
+}
+
+
+body {
+   background:  rgba(192, 157, 233, 0.3);
+}
+
+
+input {
+    font-size: 1.2rem;
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: blue;
+    display: block;
+    background: transparent;
+}
+
+.allContainer {
+    margin: 5rem;
+}
+
+.bottomSpace {
+    margin-bottom: 2rem;
+}
+
+button {
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+    color: green;
+    font-size: 1.5rem;
+    background:  rgba(255, 255, 204, 0.7);
+}
+
+button:focus {
+    outline: 0;
+    border: solid 1px green;
+}
+
+.pBottom {
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    text-decoration: underline navy;
+    font-size: 2.5rem;
+}

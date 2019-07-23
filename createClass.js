@@ -15,14 +15,21 @@ function Name(charArr) {
     HERE ALL THE EXECUTE FUNCTIONS
 */
 
+
 function executeGetLength() {
-    var theInput = document.getElementById('nameGetLength').value;
+    let theInput = document.getElementById('nameGetLength').value;
     let name = new Name(theInput.split(""));
-    let getLength = document.getElementById('getLength').innerHTML = name.myGetLength();
+    name.addEventListener("keyup", function(event) {
+        if(event.keycode === 13){
+            event.preventDefault();
+            document.getElementById('theLength').click();
+        }
+        let getLength = document.getElementById('getLength').innerHTML = 'Die Länge des Strings beträgt: ' + name.myGetLength();
+    });
 }
 
 function executeConcat() {
-    var theInput = document.getElementById('theConcat').value;
+    let theInput = document.getElementById('theConcat').value;
     // var secondInput = document.getElementById('theSecondConcat').value;
     let name = new Name(theInput.split(""));
     let concatenated = document.getElementById('concatenate').innerHTML = name.concat(theInput);
@@ -30,20 +37,40 @@ function executeConcat() {
 }
 
 function executeInclude() {
-    var theInput = document.getElementById('theName').value;
-    var secondInput = document.getElementById('letterInclude').value;
+    let theInput = document.getElementById('theName').value;
+    let secondInput = document.getElementById('letterInclude').value;
     let name = new Name(theInput.split(""));
-    let include = document.getElementById('includes').innerHTML = name.includes(secondInput);
+    let autoFocus = function () {
+        document.getElementById('theName').focus();
+    }
+    if(theInput === ""){
+        let fillField = document.getElementById('includes').innerHTML = 'Bitte einen Namen eingeben'
+        autoFocus();
+    }
+    else if(secondInput === "" || theInput === "")  {
+        let giveNumber = document.getElementById('includes').innerHTML = "Bitte eine Zahl eingeben";
+        console.error('Bitte das Feld mit einem Buchstaben befüllen')
+    }else{
+        let include = document.getElementById('includes').innerHTML = name.includes(secondInput);
+    }
 }
 
 function executeToLowerCase() {
-    var theInput = document.getElementById('nameToLowerCase').value;
+    let theInput = document.getElementById('nameToLowerCase').value;
     let name = new Name(theInput.split(""));
-    let ToLowerCase = document.getElementById('lowerCase').innerHTML = name.myToLowerCase();
+    let autoFocus = function () {
+        document.getElementById('nameToLowerCase').focus();
+    }
+    if(theInput === ""){
+        let fillField = document.getElementById('lowerCase').innerHTML = 'Bitte einen Namen eingeben'
+        autoFocus();
+    }else{
+        let ToLowerCase = document.getElementById('lowerCase').innerHTML = name.myToLowerCase();
+    }
 }
 
 function executeToString(){
-    var theInput = document.getElementById('nameToString').value;
+    let theInput = document.getElementById('nameToString').value;
     let name = new Name(theInput.split("")); 
     let toString = document.getElementById('toString').innerHTML = name.myToString();
     console.log(toString);
@@ -51,28 +78,38 @@ function executeToString(){
 
 
 function executeMyToUpperCase() {
-    var theInput = document.getElementById('nameToUpperCase').value;
+    let theInput = document.getElementById('nameToUpperCase').value;
     let name = new Name(theInput.split(""));
-    let toUpperCase = document.getElementById('toUpperCase').innerHTML = 'The UpperCase Version: ' + name.myToUpperCase();
+    let autoFocus = function () {
+        document.getElementById('nameToUpperCase').focus();
+    }
+    if(theInput === ""){
+        let fillField = document.getElementById('toUpperCase').innerHTML = 'Bitte einen Namen eingeben'
+        autoFocus();
+    }else{
+        let toUpperCase = document.getElementById('toUpperCase').innerHTML = 'The UpperCase Version: ' + name.myToUpperCase();
+    }
 }
 
 function execute() {
-    var theInputName = document.getElementById('name').value;
+    let theInputName = document.getElementById('name').value;
     let name = new Name(theInputName.split(""));
-    var firstDelim = document.getElementById('firstLetter').value;
-    var secondDelim = document.getElementById('secondLetter').value;
+    let firstDelim = document.getElementById('firstLetter').value;
+    let secondDelim = document.getElementById('secondLetter').value;
     // console.log(name.deleteString(getIndex(secondDelim), getIndex(firstDelim)));
 
-    if(firstDelim > secondDelim) {
+    if(theInputName === "" && firstDelim === "" && secondDelim === ""){
+        let fillField = document.getElementById('theDeletedString').innerHTML = "Bitte fülle die Felder";
+    }else if(firstDelim > secondDelim) {
         var wrongStructure = document.getElementById('theDeletedString').innerHTML = "Bitte die Buchstaben drehen";
         console.error('Bitte drehe die Buchstaben');
     }else{
-        var deleteIt = document.getElementById('theDeletedString').innerHTML = "Hier ist der neue Name: " + name.deleteString(getIndex(secondDelim), getIndex(firstDelim)); 
+        let deleteIt = document.getElementById('theDeletedString').innerHTML = "Hier ist der neue Name: " + name.deleteString(getIndex(secondDelim), getIndex(firstDelim)); 
     }
 }
 
 function getIndex(delim) {
-  var theInputName = document.getElementById('name').value;
+  let theInputName = document.getElementById('name').value;
   // document.write(theInputName);
   for(var i = 0; i <= theInputName.length; i++){
     if(theInputName[i] === delim) {
@@ -112,7 +149,6 @@ function deleteString(stop, start = -1) {
     }
     return returnedArray
 }
-
 
 
 /*

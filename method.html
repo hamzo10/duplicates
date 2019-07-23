@@ -4,31 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
     <title>JS-Methods</title>
 </head>
 <body>
-    <div>
-        <h1 onload="myToString();">Here is the String: </h1>
-        <div>
+    <div class="allContainer">
+        <div class="bottomSpace IncludeContainer">
             <h2>Include-Method</h2>
-            Type an name: <input id="theName" type="text">
+            Type an name: <input id="theName" type="text" autofocus>
             <br>
             Type a Letter to check if the Letter consists in the name: <input id="letterInclude" type="text">
             <button onclick="executeInclude();">Include-Method</button>
             <div id="includes"></div>
         </div>
         <hr>
-        <div>
+        <div class="bottomSpace toStringContainer">
             <h2>toString Method</h2>
-            <p>Click on the button to convert the Array in string</p>
+            <p class="pBottom"><b>Not for Use</b> Click on the button to convert the Array in string</p>
             Type the String: <input id="nameToString" type="text">
             <button onclick="executeToString()">toString</button>
             <div id="toString"></div>
         </div>
         <hr>
-        <div>
+        <div class="bottomSpace deleteStringContainer">
             <h2>deleteString</h2>
-            <p>Select from the Selectbox how many letter do want to delete</p>
+            <p class="pBottom">Select from the Selectbox how many letter do want to delete</p>
             Name: <input id="name" type="text" placeholder="please wirte a name">
             first Letter: <input id="firstLetter" type="text">
             second Letter: <input id="secondLetter" type="text">
@@ -36,32 +36,32 @@
             <div id="theDeletedString"></div>
         </div>
         <hr>
-        <div>
+        <div class="bottomSpace">
             <h2>toUpperCase</h2>
-            <p>Press on the Button to change the String to upperCase</p>
+            <p class="pBottom">Press on the Button to change the String to upperCase</p>
             Type the String: <input id="nameToUpperCase" type="text">
             <button onclick="executeMyToUpperCase();">toUpperCase</button>
             <div id="toUpperCase"></div>
         </div>
         <hr>
-        <div>
+        <div class="bottomSpace">
             <h2>GetLength</h2>
             Type the String: <input id="nameGetLength" type="text">
-            <button onclick="executeGetLength();">GetLength</button>
+            <button id="theLength" onclick="executeGetLength();">GetLength</button>
             <div id="getLength"></div>
         </div>
         <hr>
-        <div>
+        <div class="bottomSpace">
             <h2>ToLowerCase Method</h2>
-            <p>Type a string to get the IndexOf the String</p>
+            <p class="pBottom">Type a string to get the Lower Case Versiong</p>
             <input id="nameToLowerCase" type="text">
             <button onclick="executeToLowerCase();">LowerCase</button>
             <div id="lowerCase"></div>
         </div>
         <hr>
-        <div>
+        <div class="">
             <h2>Concat Method</h2>
-            <p>Type your Name and SurName to Concat them</p>
+            <p class="pBottom"><b>Not for Usage</b>Type your Name and SurName to Concat them</p>
             Firstname: <input id="theConcat" type="text">
             Surname: <input id="theSecondConcat" type="text">
             <button onlcick="executeConcat();">Concat</button>
